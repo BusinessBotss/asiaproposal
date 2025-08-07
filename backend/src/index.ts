@@ -5,7 +5,7 @@ import { z } from 'zod';
 import jwt from 'jsonwebtoken';
 import { Pool } from 'pg';
 import { v4 as uuidv4 } from 'uuid';
-import type { CommandLog, UserRole } from '@shared/types';
+import type { CommandLog, UserRole } from './types';
 import admin from 'firebase-admin';
 
 const app = express();
@@ -38,7 +38,8 @@ interface AuthUser {
   restaurants: string[];
 }
 
-function authenticateJWT(req: any, res: any, next: any) {
+interface AuthedRequest extends express.Request { user?: AuthUser }
+function authenticateJWT(req: AuthedRequest, res: express.Response, next: express.NextFunction) {
   const authHeader = req.headers['authorization'];
   if (!authHeader) return res.status(401).json({ error: 'No token' });
   const token = authHeader.split(' ')[1];
@@ -52,7 +53,7 @@ function authenticateJWT(req: any, res: any, next: any) {
 }
 
 function authorizeRoles(allowed: UserRole[]) {
-  return (req: any, res: any, next: any) => {
+  return (req: AuthedRequest, res: express.Response, next: express.NextFunction) => {
     const user = req.user as AuthUser;
     if (!user || !allowed.includes(user.role)) {
       return res.status(403).json({ error: 'Forbidden' });
@@ -129,7 +130,7 @@ app.post('/api/auth/exchange', async (req, res) => {
   }
 });
 
-app.post('/api/commands', authenticateJWT, authorizeRoles(['GM', 'SuperAdmin']), async (req, res) => {
+app.post('/api/commands', authenticateJWT, authorizeRoles(['GM', 'SuperAdmin']), async (req: AuthedRequest, res) => {
   const parse = commandSchema.safeParse(req.body);
   if (!parse.success) return res.status(400).json({ error: 'Invalid payload' });
   const { input } = parse.data;
@@ -182,7 +183,7 @@ app.get('/api/logs/export', authenticateJWT, authorizeRoles(['GM', 'SuperAdmin']
   const result = await pool.query('SELECT * FROM command_logs ORDER BY created_at DESC LIMIT 2000');
   const rows = result.rows;
   const header = ['id','restaurant_id','role','target','message','status','error_message','created_at','updated_at'];
-  const csv = [header.join(',')].concat(rows.map(r => header.map(h => JSON.stringify(r[h] ?? '')).join(','))).join('\n');
+  const csv = [header.join(',')].concat(rows.map((r: any) => header.map(h => JSON.stringify((r as any)[h] ?? '')).join(','))).join('\n');
   res.setHeader('Content-Type', 'text/csv');
   res.setHeader('Content-Disposition', 'attachment; filename="logs.csv"');
   res.send(csv);
