@@ -1,0 +1,16 @@
+{
+  "name": "resto-whatsapp-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["backend", "frontend", "bot", "shared"],
+  "scripts": {
+    "build": "npm --workspaces run build",
+    "dev": "echo \"Use per-package dev scripts: backend, frontend, bot\"",
+    "test": "npm --workspaces run test",
+    "typecheck": "npm --workspaces run typecheck",
+    "lint": "echo \"Add linters per package\""
+  },
+  "engines": {
+    "node": ">=18.17"
+  }
+}

@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-gold: #D4AF37;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+.button-gold {
+  @apply bg-gold-500 text-black rounded px-3 py-2 font-semibold hover:opacity-90;
+}
