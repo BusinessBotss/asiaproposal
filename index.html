@@ -4,399 +4,284 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Propuesta Comercial – Business Bots</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Noto+Serif+JP&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #FFFFFF;
-            --text-color: #1a1a1a;
-            --border-color: #e0e0e0;
-            --accent-color: #333333;
-            --highlight-color: #000000;
-            --font-main: 'Roboto', sans-serif;
-            --font-display: 'Playfair Display', serif;
+            --bg-color: #0d0d0d;
+            --text-color: #e0e0e0;
+            --highlight-color: #f0f0f0;
+            --accent-color: #d4af37;
+            --border-color: #333;
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Noto Serif JP', serif;
         }
-
         body {
-            font-family: var(--font-main);
+            font-family: var(--font-sans);
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 0;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        header {
-            text-align: center;
-            padding: 4rem 0 2rem;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 3rem;
-        }
-
-        header h1 {
-            font-family: var(--font-display);
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: -1px;
-            color: var(--highlight-color);
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            margin-top: 0.5rem;
-        }
-        
-        .nav-sticky {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: var(--bg-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease-in-out;
-            transform: translateY(0);
-        }
-
-        .nav-sticky.hidden {
-            transform: translateY(-100%);
-        }
-
-        .nav-sticky a {
-            color: var(--accent-color);
-            text-decoration: none;
-            margin: 0 1.5rem;
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            position: relative;
-        }
-
-        .nav-sticky a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background-color: var(--highlight-color);
-            transition: width 0.3s ease, left 0.3s ease;
-        }
-
-        .nav-sticky a:hover::after {
-            width: 100%;
-            left: 0;
-        }
-
-        .section {
-            margin-bottom: 5rem;
-        }
-
-        .section h2 {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-top: 0;
-            margin-bottom: 2rem;
-            text-align: left;
-            border-bottom: 2px solid var(--highlight-color);
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-
-        .section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            border-radius: 8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-        
-        .card h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            color: var(--highlight-color);
-        }
-
-        .card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .card li {
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed var(--border-color);
-        }
-        .card li:last-child {
-            border-bottom: none;
-        }
-
-        .price-card {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            text-align: center;
             padding: 3rem 2rem;
-            border-radius: 8px;
+            line-height: 1.8;
+            transition: background-color 0.5s ease;
         }
-
-        .price-card h3 {
-            color: var(--bg-color);
-            font-size: 2rem;
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            color: var(--highlight-color);
             margin-bottom: 1rem;
+            font-weight: 600;
         }
-
-        .price-card .price {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 700;
-            line-height: 1;
+        h1 { font-size: 2.8rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+        .section {
+            max-width: 960px;
+            margin: 0 auto 5rem;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
         }
-
-        .price-card .details {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-top: 1rem;
+        ul {
+            padding-left: 1.5rem;
         }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--highlight-color);
-            color: var(--bg-color);
-            padding: 1rem 2rem;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 50px;
-            margin-top: 2rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: var(--accent-color);
-        }
-
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1.5rem;
-            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
             text-align: left;
         }
-
-        th, td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
         th {
-            font-weight: 700;
-            background-color: #fafafa;
+            background-color: #1a1a1a;
+            color: var(--accent-color);
+            font-weight: 600;
         }
-
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid var(--border-color);
-            margin-top: 4rem;
-            color: #888;
+        .lang-toggle {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 6px;
+            z-index: 1000;
+            transition: background 0.3s ease;
+            font-family: var(--font-sans);
+            text-transform: uppercase;
         }
-        
+        .lang-toggle:hover {
+            filter: brightness(1.2);
+        }
+        .lang-toggle:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
         .floating-contact {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background-color: var(--highlight-color);
+            background: var(--accent-color);
             color: var(--bg-color);
-            text-decoration: none;
-            padding: 1rem 1.5rem;
+            border: none;
+            padding: 0.75rem 1.25rem;
             border-radius: 50px;
-            font-weight: 700;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-            z-index: 99;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+            text-decoration: none;
         }
-
-        .floating-contact:hover {
-            transform: scale(1.05);
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
         }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            header h1 {
-                font-size: 2.5rem;
-            }
-            .section h2 {
-                font-size: 2rem;
-            }
-            .nav-sticky a {
-                margin: 0 0.8rem;
-            }
+        /* Clases para gestionar el cambio de idioma */
+        [data-lang="es"], [data-lang="en"], [data-lang="zh"] {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            height: 0;
+            overflow: hidden;
+            display: block; /* Para permitir transiciones */
+        }
+        .active-lang {
+            opacity: 1;
+            height: auto;
+            overflow: visible;
         }
     </style>
 </head>
-<body>
+<body lang="es">
 
-    <a class="floating-contact" href="#contact">Contacto</a>
+    <button class="lang-toggle" onclick="toggleLang()">EN</button>
+    <a id="contact-link" class="floating-contact" href="mailto:businessbots.info@gmail.com">Contacto</a>
 
-    <div class="nav-sticky" id="sticky-nav">
-        <a href="#que-es">¿Qué es?</a>
-        <a href="#casos-de-uso">Usos</a>
-        <a href="#alcance">Alcance</a>
-        <a href="#precios">Precios</a>
-        <a href="#conclusion">Conclusión</a>
+    <div data-lang="es" class="section active-lang">
+        <h1>📝 Propuesta Comercial</h1>
+        <h2>Sistema de Comunicación Inteligente por WhatsApp para Grupos de Restauración</h2>
+        <p>Desarrollado por <span class="highlight">Business Bots Solutions, S.L.</span></p>
+
+        <h3>🧠 ¿Qué es?</h3>
+        <p>Un sistema completo de comunicación organizacional interna vía WhatsApp que permite a los Gerentes Generales (GM) de cada local enviar comandos estructurados, rápidos y trazables a distintos equipos operativos (chefs, meseros, administración) desde su móvil, sin necesidad de descargar ninguna app adicional.</p>
+
+        <h3>🌟 Casos de uso típicos</h3>
+        <ul>
+            <li>Comunicación instantánea entre GM y cocinas en 15+ locales</li>
+            <li>Actualización de procedimientos y recetas en todos los centros</li>
+            <li>Recordatorios automáticos y distribución por rol</li>
+            <li>Historial de instrucciones y mensajes ordenado por local</li>
+            <li>Gestión centralizada y control por parte de HQ</li>
+        </ul>
+
+        <h3>🧱 Alcance Técnico del Proyecto</h3>
+        <table>
+            <tr><th>Módulo</th><th>Funcionalidad principal</th></tr>
+            <tr><td>🧠 Procesador de Comandos</td><td>Comandos vía WhatsApp (ej: /chef[SucursalMadrid]: Actualiza el menú vegano)</td></tr>
+            <tr><td>🧩 Motor semántico inteligente</td><td>Reconocimiento de sinónimos y validación de sintaxis</td></tr>
+            <tr><td>🗾️ Gestión de roles y permisos</td><td>GM, Supervisores, Staff por rol, Admin global</td></tr>
+            <tr><td>🧑‍💻 Panel web administrativo</td><td>Dashboard con control de locales, usuarios, logs, estadísticas</td></tr>
+            <tr><td>💬 WhatsApp API & Builderbot</td><td>Envío y recepción de comandos, lógica de confirmaciones, reintentos</td></tr>
+        </table>
+
+        <h3>💼 Precio de Setup Profesional</h3>
+        <p><span class="highlight">🔧 Setup completo llave en mano (interfaz + sistema funcional):</span></p>
+        <p><strong>€8.000 a €10.000 + IVA</strong> según número de locales y personalizaciones.</p>
+        <p>Incluye:</p>
+        <ul>
+            <li>Desarrollo completo del sistema (frontend + backend + WhatsApp)</li>
+            <li>Diseño visual a medida</li>
+            <li>Registro e integración de número dedicado WhatsApp Business</li>
+        </ul>
+
+        <h3>🔁 Mantenimiento y Coste Mensual</h3>
+        <table>
+            <tr><th>Plan / Escalado</th><th>Precio mensual</th><th>Detalles incluidos</th></tr>
+            <tr><td>🧩 Hasta 15 locales</td><td>349 €</td><td>75 grupos internos (cocina, sala, admin...)</td></tr>
+            <tr><td>🏢 Plan Enterprise</td><td>Desde 699 €</td><td>Soporte 24/7, integraciones externas (ERP, CRM)</td></tr>
+        </table>
+
+        <h3>📆 Tiempo estimado de entrega</h3>
+        <p><strong>3 a 5 semanas</strong>, incluyendo pruebas, capacitación y despliegue productivo.</p>
+
+        <h3>🏛️ Conclusión y Valor Añadido</h3>
+        <p>Business Bots ofrece una solución robusta y escalable, validada en entorno real y pensada para cadenas de restauración modernas que buscan eficiencia operativa, comunicación clara y control centralizado desde WhatsApp.</p>
     </div>
 
-    <div class="container">
-        
-        <header>
-            <h1>Propuesta Comercial</h1>
-            <p>Sistema de Comunicación Inteligente por WhatsApp para Grupos de Restauración</p>
-        </header>
+    <div data-lang="en" class="section">
+        <h1 data-en>📝 Commercial Proposal</h1>
+        <h2 data-en>Intelligent WhatsApp Communication System for Restaurant Groups</h2>
+        <p data-en>Developed by <span class="highlight">Business Bots Solutions, S.L.</span></p>
 
-        <section id="que-es" class="section">
-            <h2>¿Qué es?</h2>
-            <p>Un sistema completo de comunicación organizacional interna vía WhatsApp que permite a los Gerentes Generales (GM) de cada local enviar comandos estructurados, rápidos y trazables a distintos equipos operativos (chefs, meseros, administración) desde su móvil, sin necesidad de descargar ninguna app adicional.</p>
-        </section>
+        <h3 data-en>🧠 What is it?</h3>
+        <p data-en>A complete internal organizational communication system via WhatsApp that allows General Managers (GM) of each location to send structured, fast, and traceable commands to different operational teams (chefs, waiters, administration) from their mobile, without the need to download any additional app.</p>
 
-        <section id="casos-de-uso" class="section">
-            <h2>Casos de uso típicos</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Comunicación Instantánea</h3>
-                    <ul>
-                        <li>Comunícate entre GM y cocinas en más de 15 locales.</li>
-                        <li>Actualiza procedimientos y recetas en todos los centros al mismo tiempo.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Automatización y Trazabilidad</h3>
-                    <ul>
-                        <li>Envía recordatorios automáticos y distribuye por rol.</li>
-                        <li>Accede a un historial de instrucciones y mensajes ordenado por local.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Gestión Centralizada</h3>
-                    <ul>
-                        <li>Controla la operación desde la sede central.</li>
-                        <li>Optimiza la comunicación y reduce errores operativos.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        <h3 data-en>🌟 Typical Use Cases</h3>
+        <ul data-en>
+            <li>Instant communication between GMs and kitchens in 15+ locations</li>
+            <li>Procedure and recipe updates across all centers</li>
+            <li>Automatic reminders and distribution by role</li>
+            <li>History of instructions and messages sorted by location</li>
+            <li>Centralized management and control by HQ</li>
+        </ul>
 
-        <section id="alcance" class="section">
-            <h2>Alcance Técnico del Proyecto</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Módulo</th>
-                        <th>Funcionalidad principal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>🧠 Procesador de Comandos</td><td>Comandos vía WhatsApp (ej: /chef[SucursalMadrid]: Actualiza el menú vegano)</td></tr>
-                    <tr><td>🧩 Motor Semántico Inteligente</td><td>Reconocimiento de sinónimos y validación de sintaxis</td></tr>
-                    <tr><td>🧑‍💻 Panel Web Administrativo</td><td>Dashboard con control de locales, usuarios, logs, estadísticas</td></tr>
-                    <tr><td>💬 WhatsApp API & Builderbot</td><td>Envío y recepción de comandos, lógica de confirmaciones, reintentos</td></tr>
-                </tbody>
-            </table>
-        </section>
+        <h3 data-en>🧱 Project Technical Scope</h3>
+        <table data-en>
+            <tr><th>Module</th><th>Main Functionality</th></tr>
+            <tr><td>🧠 Command Processor</td><td>Commands via WhatsApp (e.g.: /chef[MadridBranch]: Update the vegan menu)</td></tr>
+            <tr><td>🧩 Intelligent Semantic Engine</td><td>Recognition of synonyms and syntax validation</td></tr>
+            <tr><td>🗾️ Role and Permission Management</td><td>GM, Supervisors, Staff by role, Global Admin</td></tr>
+            <tr><td>🧑‍💻 Administrative Web Panel</td><td>Dashboard with control over locations, users, logs, statistics</td></tr>
+            <tr><td>💬 WhatsApp API & Builderbot</td><td>Sending and receiving commands, confirmation logic, retries</td></tr>
+        </table>
 
-        <section id="precios" class="section">
-            <h2>Planes y Precios</h2>
-            <div class="grid">
-                <div class="card price-card">
-                    <h3>Setup Profesional</h3>
-                    <p class="price">€8.000 - €10.000</p>
-                    <p class="details">Pago único + IVA, según personalización.</p>
-                    <p class="details">Incluye desarrollo completo, diseño a medida, integración de WhatsApp Business, alta inicial de hasta 15 restaurantes y capacitación.</p>
-                </div>
-                <div class="card">
-                    <h3>Mantenimiento Mensual</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Plan</th>
-                                <th>Precio</th>
-                                <th>Detalles</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>🧩 Hasta 15 locales</td><td>349 €</td><td>75 grupos internos</td></tr>
-                            <tr><td>🏗️ Hasta 30 locales</td><td>499 €</td><td>Backups y soporte extendido</td></tr>
-                            <tr><td>🏢 Plan Enterprise</td><td>Desde 699 €</td><td>Soporte 24/7, integraciones externas</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div style="margin-top: 3rem;">
-                <h3>Formas de Pago</h3>
-                <ul>
-                    <li>Pago anticipado con descuento (-5%)</li>
-                    <li>Pago fraccionado en 3 cuotas</li>
-                    <li>Modalidad renting tecnológico (consultar)</li>
-                </ul>
-                <p>Tiempo de entrega estimado: <strong>3 a 5 semanas.</strong></p>
-            </div>
-        </section>
+        <h3 data-en>💼 Professional Setup Price</h3>
+        <p data-en><span class="highlight">🔧 Complete turnkey setup (interface + functional system):</span></p>
+        <p data-en><strong>€8,000 to €10,000 + VAT</strong> depending on the number of locations and customizations.</p>
+        <p data-en>Includes:</p>
+        <ul data-en>
+            <li>Complete system development (frontend + backend + WhatsApp)</li>
+            <li>Custom visual design</li>
+            <li>Registration and integration of a dedicated WhatsApp Business number</li>
+        </ul>
 
-        <section id="conclusion" class="section">
-            <h2>Conclusión</h2>
-            <p>Business Bots ofrece una solución robusta y escalable, validada en entornos reales y pensada para cadenas de restauración modernas que buscan eficiencia operativa, comunicación clara y control centralizado desde WhatsApp.</p>
-            <a href="mailto:tu-email@example.com" class="cta-button">Contáctanos para más información</a>
-        </section>
+        <h3 data-en>🔁 Maintenance and Monthly Cost</h3>
+        <table data-en>
+            <tr><th>Plan / Scalability</th><th>Monthly Price</th><th>Included Details</th></tr>
+            <tr><td>🧩 Up to 15 locations</td><td>€349</td><td>75 internal groups (kitchen, service, admin...)</td></tr>
+            <tr><td>🏢 Enterprise Plan</td><td>From €699</td><td>24/7 support, external integrations (ERP, CRM)</td></tr>
+        </table>
+
+        <h3 data-en>📆 Estimated Delivery Time</h3>
+        <p data-en><strong>3 to 5 weeks</strong>, including testing, training, and productive deployment.</p>
+
+        <h3 data-en>🏛️ Conclusion and Added Value</h3>
+        <p data-en>Business Bots offers a robust and scalable solution, validated in a real-world environment and designed for modern restaurant chains looking for operational efficiency, clear communication, and centralized control from WhatsApp.</p>
     </div>
-
-    <footer>
-        <p>&copy; 2025 Business Bots Solutions. Todos los derechos reservados.</p>
-    </footer>
 
     <script>
-        // Script para la navegación pegajosa (sticky)
-        let lastScrollY = window.scrollY;
-        const nav = document.getElementById('sticky-nav');
-        
-        window.addEventListener('scroll', () => {
-            if (lastScrollY < window.scrollY && window.scrollY > 200) {
-                // Scrolling down
-                nav.classList.add('hidden');
-            } else {
-                // Scrolling up
-                nav.classList.remove('hidden');
+        const translations = {
+            'es': {
+                'title': 'Propuesta Comercial – Business Bots',
+                'contact_text': 'Contacto',
+                'contact_href': 'mailto:businessbots.info@gmail.com',
+            },
+            'en': {
+                'title': 'Commercial Proposal – Business Bots',
+                'contact_text': 'Contact',
+                'contact_href': 'mailto:businessbots.info@gmail.com',
+            },
+            'zh': {
+                'title': '商业提案 – Business Bots',
+                'contact_text': '联系方式',
+                'contact_href': 'mailto:businessbots.info@gmail.com',
             }
-            lastScrollY = window.scrollY;
+        };
+
+        const availableLangs = ['es', 'en'];
+        let currentLangIndex = 0;
+
+        function updateContent(lang) {
+            document.querySelectorAll('[data-lang]').forEach(block => {
+                const isActive = block.dataset.lang === lang;
+                block.classList.toggle('active-lang', isActive);
+                block.setAttribute('aria-hidden', !isActive);
+            });
+            document.documentElement.setAttribute('lang', lang);
+        }
+
+        function updateMetaData(lang) {
+            document.title = translations[lang].title;
+            const contactLink = document.getElementById('contact-link');
+            contactLink.textContent = translations[lang].contact_text;
+            contactLink.href = translations[lang].contact_href;
+        }
+
+        function toggleLang() {
+            currentLangIndex = (currentLangIndex + 1) % availableLangs.length;
+            const newLang = availableLangs[currentLangIndex];
+            
+            // Actualiza los bloques de contenido y metadatos
+            updateContent(newLang);
+            updateMetaData(newLang);
+
+            // Actualiza el texto del botón
+            document.querySelector('.lang-toggle').textContent = availableLangs[(currentLangIndex + 1) % availableLangs.length].toUpperCase();
+
+            // Guarda el idioma en localStorage para persistencia
+            localStorage.setItem('lang', newLang);
+        }
+
+        // Cargar el idioma guardado al iniciar
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('lang') || 'es';
+            const langIndex = availableLangs.indexOf(savedLang);
+            if (langIndex !== -1) {
+                currentLangIndex = langIndex - 1; // Para que el toggle funcione correctamente
+                toggleLang();
+            }
         });
     </script>
 </body>
