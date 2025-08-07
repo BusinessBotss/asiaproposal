@@ -389,7 +389,7 @@
             <section id="conclusion">
                 <h2>Conclusión</h2>
                 <p>Business Bots ofrece una solución robusta y escalable, validada en entornos reales y pensada para cadenas de restauración modernas que buscan eficiencia operativa, comunicación clara y control centralizado desde WhatsApp.</p>
-                <a href="mailto:businessbots.info@gmail.com" class="cta-button">Contáctanos para más información</a>
+                <a id="cta-link" href="mailto:businessbots.info@gmail.com" class="cta-button">Contáctanos para más información</a>
             </section>
         </div>
 
@@ -485,7 +485,7 @@
             <section id="conclusion">
                 <h2>Conclusion</h2>
                 <p>Business Bots offers a robust and scalable solution, validated in real-world environments and designed for modern restaurant chains looking for operational efficiency, clear communication, and centralized control from WhatsApp.</p>
-                <a href="mailto:businessbots.info@gmail.com" class="cta-button">Contact us for more information</a>
+                <a id="cta-link" href="mailto:businessbots.info@gmail.com" class="cta-button">Contact us for more information</a>
             </section>
         </div>
 
@@ -504,8 +504,9 @@
                 'nav-precios': 'Precios',
                 'nav-conclusion': 'Conclusión',
                 'contact_text': 'Contacto',
-                'contact_href': 'mailto:businessbots.info@gmail.com',
+                'contact_href': 'mailto:businessbots.info@gmail.com?subject=Propuesta Comercial ES',
                 'cta_button': 'Contáctanos para más información',
+                'cta_href': 'mailto:businessbots.info@gmail.com?subject=Propuesta Comercial ES',
                 'footer_text': '&copy; 2025 Business Bots Solutions. Todos los derechos reservados.',
                 'toggle_button': 'EN'
             },
@@ -517,8 +518,9 @@
                 'nav-precios': 'Pricing',
                 'nav-conclusion': 'Conclusion',
                 'contact_text': 'Contact',
-                'contact_href': 'mailto:businessbots.info@gmail.com',
+                'contact_href': 'mailto:businessbots.info@gmail.com?subject=Commercial Proposal EN',
                 'cta_button': 'Contact us for more information',
+                'cta_href': 'mailto:businessbots.info@gmail.com?subject=Commercial Proposal EN',
                 'footer_text': '&copy; 2025 Business Bots Solutions. All rights reserved.',
                 'toggle_button': 'ES'
             }
@@ -538,13 +540,15 @@
 
         function updateMetaData(lang) {
             document.title = translations[lang].title;
+            
             const contactLink = document.getElementById('contact-link');
             contactLink.textContent = translations[lang].contact_text;
             contactLink.href = translations[lang].contact_href;
 
-            const ctaButton = document.querySelector('.cta-button');
-            if (ctaButton) {
-                ctaButton.textContent = translations[lang].cta_button;
+            const ctaLink = document.getElementById('cta-link');
+            if (ctaLink) {
+                ctaLink.textContent = translations[lang].cta_button;
+                ctaLink.href = translations[lang].cta_href;
             }
             
             const footer = document.getElementById('footer-text');
